@@ -4,6 +4,8 @@ import Home from './components/Home';
 import Login from './components/Login';
 import { AuthProvider } from './context/AuthContext';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import PrivateRoute from './components/PrivateRoute';
+import PublicRoute from './components/PublicRoute';
 
 function App() {
   return (
@@ -11,9 +13,27 @@ function App() {
       <div style={{ margin: '2em' }}>
       <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/login" element={<Login />} />
+            <Route 
+              path="/" 
+              element={
+                <PrivateRoute>
+                  <Home />
+                </PrivateRoute>
+              } />
+            <Route 
+              path="/signup" 
+              element={
+                <PublicRoute>
+                  <SignUp />
+                </PublicRoute>
+              } />
+            <Route 
+              path="/login" 
+              element={
+                <PublicRoute>
+                  <Login />
+                </PublicRoute>
+              } />
           </Routes>
         </BrowserRouter>
       </div>

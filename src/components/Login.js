@@ -3,8 +3,10 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
-  const handleSubmit = () => {
-
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const { email, password } = event.target.elements;
+    signInWithEmailAndPassword(auth, email.value, password.value);
   };
 
   return (
